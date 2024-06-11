@@ -1,0 +1,29 @@
+package org.example.todo;
+
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
+
+@SpringBootApplication
+public class TodoApplication {
+
+    @Value("${DB_USERNAME}")
+    private String dbUsername;
+
+    @Value("${DB_PASSWORD}")
+    private String dbPassword;
+
+    public static void main(String[] args) {
+        SpringApplication.run(TodoApplication.class, args);
+    }
+
+    @Bean
+    public CommandLineRunner run() {
+        return args -> {
+            System.out.println("DB_USERNAME: " + dbUsername);
+            System.out.println("DB_PASSWORD: " + dbPassword);
+        };
+    }
+}
